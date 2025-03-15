@@ -18,4 +18,4 @@ const quantityCount = (state, id) => {
     }
 }
 
-export {shorten, isInCart, quantityCount};
+export { shorten, isInCart, quantityCount };

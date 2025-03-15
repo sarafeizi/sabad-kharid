@@ -16,10 +16,10 @@ const Store = () => {
     return (
         <div className={styles.container} >
             {
-                products.map(product => <Product 
-                        key={product.id} 
-                        productData = {product}
-                    />)
+                products.map(product => <Product
+                    key={product.id}
+                    productData={product}
+                />)
             }
         </div>
     );

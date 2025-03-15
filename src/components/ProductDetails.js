@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // Context
@@ -12,7 +12,7 @@ const ProductDetails = (props) => {
     const id = props.match.params.id;
     const data = useContext(ProductsContext);
     const product = data[id - 1];
-    const {image, title, description, price, category} = product;
+    const { image, title, description, price, category } = product;
 
     return (
         <div className={styles.container}>

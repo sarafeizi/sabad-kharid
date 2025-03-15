@@ -5,7 +5,7 @@ import { getProducts } from '../services/api';
 
 export const ProductsContext = createContext();
 
-const ProductContextProvider = ({children}) => {
+const ProductContextProvider = ({ children }) => {
 
     const [products, setProducts] = useState([]);
 

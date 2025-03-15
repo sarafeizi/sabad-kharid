@@ -22,29 +22,29 @@ const ShopCart = () => {
 
             {
                 state.itemsCounter > 0 && <div className={styles.payments}>
-                        <p><span>Total Items:</span> {state.itemsCounter}</p>
-                        <p><span>Total Payments:</span> {state.total} $</p>
-                        <div className={styles.buttonContainer}>
-                            <button className={styles.clear} onClick={() => dispatch({type: "CLEAR"})}>Clear</button>
-                            <button className={styles.checkout} onClick={() => dispatch({type: "CHECKOUT"})}>Checkout</button>
-                        </div>
+                    <p><span>Total Items:</span> {state.itemsCounter}</p>
+                    <p><span>Total Payments:</span> {state.total} $</p>
+                    <div className={styles.buttonContainer}>
+                        <button className={styles.clear} onClick={() => dispatch({ type: "CLEAR" })}>Clear</button>
+                        <button className={styles.checkout} onClick={() => dispatch({ type: "CHECKOUT" })}>Checkout</button>
                     </div>
+                </div>
             }
 
             {
                 state.itemsCounter === 0 && !state.checkout && <div className={styles.complete}>
-                        <h3>Want to buy?</h3>
-                        <Link to="/products">Go to shop</Link>
-                    </div>
+                    <h3>Want to buy?</h3>
+                    <Link to="/products">Go to shop</Link>
+                </div>
             }
 
             {
                 state.checkout && <div className={styles.complete}>
-                        <h3>Checked out successfully</h3>
-                        <Link to="/products">Buy More</Link>
-                    </div>
+                    <h3>Checked out successfully</h3>
+                    <Link to="/products">Buy More</Link>
+                </div>
             }
-            
+
         </div>
     );
 };
