@@ -25,7 +25,18 @@ const ShopCart = () => {
                     <p><span>Total Items:</span> {state.itemsCounter}</p>
                     <p><span>Total Payments:</span> {state.total} $</p>
                     <div className={styles.buttonContainer}>
-                        <button className={styles.clear} onClick={() => dispatch({ type: "CLEAR" })}>Clear</button>
+                        <button
+                            className={styles.clear}
+                            onClick={() => {
+                                const confirmClear = window.confirm("آیا مطمئن هستید که می‌خواهید سبد خرید را پاک کنید؟");
+                                if (confirmClear) {
+                                    dispatch({ type: "CLEAR" });
+                                }
+                            }}
+                        >
+                            Clear
+                        </button>
+
                         <button className={styles.checkout} onClick={() => dispatch({ type: "CHECKOUT" })}>Checkout</button>
                     </div>
                 </div>
