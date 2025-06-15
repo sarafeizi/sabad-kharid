@@ -7,11 +7,20 @@ import trashIcon from "../assets/icons/trash.svg";
 import styles from "./ProductDetails.module.css";
 
 const ProductDetails = (props) => {
-    const id = props.match.params.id;
+    const id = Number(props.match.params.id); // تبدیل رشته به عدد
     const data = useContext(ProductsContext);
     const { state, dispatch } = useContext(CartContext);
 
+    if (!data || data.length === 0) {
+        return <div>Loading products...</div>;  // یا لودینگ یا پیام مناسب
+    }
+
     const product = data[id - 1];
+
+    if (!product) {
+        return <div>Product not found</div>;
+    }
+
     const { image, title, description, price, category } = product;
 
     return (
@@ -23,17 +32,23 @@ const ProductDetails = (props) => {
                 <p className={styles.category}><span>Category:</span> {category}</p>
 
                 <div className={styles.buttonContainer}>
-
                     <span className={styles.price}>{price} $</span>
-                    <div>
+
+                    <div className={styles.buttonGroup}>
                         {quantityCount(state, product.id) === 1 && (
-                            <button className={styles.smallButton} onClick={() => dispatch({ type: "REMOVE_ITEM", payload: product })}>
+                            <button
+                                className={styles.smallButton}
+                                onClick={() => dispatch({ type: "REMOVE_ITEM", payload: product })}
+                            >
                                 <img src={trashIcon} alt="trash" />
                             </button>
                         )}
 
                         {quantityCount(state, product.id) > 1 && (
-                            <button className={styles.smallButton} onClick={() => dispatch({ type: "DECREASE", payload: product })}>-</button>
+                            <button
+                                className={styles.smallButton}
+                                onClick={() => dispatch({ type: "DECREASE", payload: product })}
+                            >-</button>
                         )}
 
                         {quantityCount(state, product.id) > 0 && (
@@ -41,13 +56,19 @@ const ProductDetails = (props) => {
                         )}
 
                         {isInCart(state, product.id) ? (
-                            <button className={styles.smallButton} onClick={() => dispatch({ type: "INCREASE", payload: product })}>+</button>
+                            <button
+                                className={styles.smallButton}
+                                onClick={() => dispatch({ type: "INCREASE", payload: product })}
+                            >+</button>
                         ) : (
-                            <button onClick={() => dispatch({ type: "ADD_ITEM", payload: product })}>Add to Cart</button>
+                            <button
+                                className={styles.smallButton}
+                                onClick={() => dispatch({ type: "ADD_ITEM", payload: product })}
+                            >+</button>
                         )}
-
                     </div>
-                    <Link to="/products" className="mt-4 d-inline-block">Back to Shop</Link>
+
+                    <Link to="/products" className={styles.backToShop}>Back to Shop</Link>
                 </div>
             </div>
         </div>
