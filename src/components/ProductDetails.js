@@ -12,7 +12,7 @@ const ProductDetails = (props) => {
     const { state, dispatch } = useContext(CartContext);
 
     if (!data || data.length === 0) {
-        return <div>Loading products...</div>;  // یا لودینگ یا پیام مناسب
+        return <div>Loading products...</div>;    
     }
 
     const product = data[id - 1];
